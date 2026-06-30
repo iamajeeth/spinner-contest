@@ -1,0 +1,93 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#64112c">
+  <meta name="description" content="Spin the wheel and win an exclusive saree shopping offer.">
+  <title>Selvam Sarees — Spin & Win</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=DM+Serif+Display&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="./styles.css">
+</head>
+<body>
+  <div class="page-shell">
+    <header class="site-header">
+      <a class="brand" href="#" aria-label="Selvam Sarees home">
+        <span class="brand-mark" aria-hidden="true">S</span>
+        <span><strong>SELVAM</strong><small>SAREES</small></span>
+      </a>
+      <div class="festive-tag"><span aria-hidden="true">✦</span> FESTIVE SPECIAL</div>
+    </header>
+
+    <main>
+      <section class="hero">
+        <div class="hero-copy">
+          <p class="eyebrow">A LITTLE CELEBRATION, JUST FOR YOU</p>
+          <h1>Spin. Win.<br><em>Wear the joy.</em></h1>
+          <p class="intro">Your next beautiful saree comes with a beautiful surprise. Enter your mobile number and try your luck!</p>
+
+          <form id="spin-form" novalidate>
+            <label for="mobile">Your mobile number</label>
+            <div class="phone-field" id="phone-field">
+              <span class="country-code"><span>🇮🇳</span> +91</span>
+              <input id="mobile" name="mobile" type="tel" inputmode="numeric" autocomplete="tel-national" maxlength="10" placeholder="98765 43210" aria-describedby="form-message">
+            </div>
+            <p class="form-message" id="form-message" role="alert"></p>
+            <button class="primary-button" id="spin-submit" type="submit">
+              <span>UNLOCK MY SPIN</span><span aria-hidden="true">→</span>
+            </button>
+            <p class="privacy"><span aria-hidden="true">♢</span> One spin per mobile number. Your information stays private.</p>
+          </form>
+        </div>
+
+        <div class="wheel-area" aria-label="Prize wheel">
+          <div class="sparkle sparkle-one">✦</div>
+          <div class="sparkle sparkle-two">✧</div>
+          <div class="pointer" aria-hidden="true"></div>
+          <div class="wheel-frame">
+            <div class="wheel" id="wheel">
+              <div class="wheel-label label-0"><span>HAIR CLIP</span><small>+ 5% OFF</small></div>
+              <div class="wheel-label label-1"><span>KEYCHAIN</span><small>+ 5% OFF</small></div>
+              <div class="wheel-label label-2"><span>HAIRBAND</span><small>+ 5% OFF</small></div>
+              <div class="wheel-label label-3"><span>KERCHIEF</span><small>+ 5% OFF</small></div>
+              <div class="wheel-label label-4"><span>PET JAR</span><small>+ 5% OFF</small></div>
+              <div class="wheel-label label-5"><span>TOWEL</span><small>+ 10% OFF</small></div>
+              <div class="wheel-label label-6"><span>TOWEL</span><small>+ 20% OFF</small></div>
+              <div class="wheel-label label-7"><span>TOWEL</span><small>+ 50% OFF</small></div>
+            </div>
+            <div class="wheel-hub"><span>SPIN</span><small>& WIN</small></div>
+          </div>
+          <p class="wheel-caption"><span></span> EXCLUSIVE REWARDS AWAIT <span></span></p>
+        </div>
+      </section>
+
+      <section class="trust-strip" aria-label="Contest benefits">
+        <div><span>✦</span><p><strong>Guaranteed reward</strong><small>Every spin wins something</small></p></div>
+        <div><span>◷</span><p><strong>Instant results</strong><small>No waiting, know right away</small></p></div>
+        <div><span>♡</span><p><strong>Made for you</strong><small>Exclusive in-store offers</small></p></div>
+      </section>
+
+      <p class="terms"><strong>Purchase eligibility: ₹1,000–₹5,000.</strong> Offer valid for a limited period and redeemable only at Selvam Sarees. Terms & conditions apply.</p>
+    </main>
+  </div>
+
+  <div class="modal" id="result-modal" hidden>
+    <div class="modal-backdrop"></div>
+    <section class="result-card" role="dialog" aria-modal="true" aria-labelledby="result-title">
+      <button class="close-button" id="close-modal" aria-label="Close">×</button>
+      <div class="result-icon">✦</div>
+      <p class="eyebrow">CONGRATULATIONS!</p>
+      <h2 id="result-title">You won!</h2>
+      <p id="result-detail"></p>
+      <div class="coupon"><small>YOUR COUPON CODE</small><strong id="result-code"></strong></div>
+      <p class="result-note">Take a screenshot and show it at the billing counter.</p>
+      <button class="primary-button" id="done-button">DONE</button>
+    </section>
+  </div>
+
+  <script src="./config.js"></script>
+  <script src="./app.js" defer></script>
+</body>
+</html>

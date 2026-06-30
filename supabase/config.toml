@@ -1,0 +1,4 @@
+project_id = "tpqwbsochispnohwaowq"
+
+[functions.spin]
+verify_jwt = false
