@@ -93,6 +93,16 @@ Deno.serve(async request => {
     auth: { persistSession: false, autoRefreshToken: false }
   });
 
+  const { data: recentPrizes, error: historyError } = await supabase
+    .from("spins")
+    .select("prize_index")
+    .order("claimed_at", { ascending: false })
+    .limit(2);
+
+  if (historyError) {
+    console.error("Unable to read prize history:", historyError.message);
+  }
+
   const prizeIndex = selectPrizeIndex();
   const prize = prizes[prizeIndex];
   const { error } = await supabase.from('spins').insert({
