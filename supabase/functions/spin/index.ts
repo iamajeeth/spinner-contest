@@ -7,13 +7,13 @@ const allowedOrigins = new Set([
 ]);
 
 const prizes = [
-  { title: 'Hair Clip + 5% Off', detail: 'Valid on an eligible purchase from ₹1,000 to ₹5,000', code: 'CLIP5', weight: 500 },
+  { title: 'Hair Clip + 5% Off', detail: 'Valid on an eligible purchase from ₹1,000 to ₹5,000', code: 'CLIP5', weight: 300 },
   { title: 'Keychain + 5% Off', detail: 'Valid on an eligible purchase from ₹1,000 to ₹5,000', code: 'KEY5', weight: 200 },
   { title: 'Hairband + 5% Off', detail: 'Valid on an eligible purchase from ₹1,000 to ₹5,000', code: 'BAND5', weight: 100 },
   { title: 'Kerchief + 5% Off', detail: 'Valid on an eligible purchase from ₹1,000 to ₹5,000', code: 'KERCHIEF5', weight: 100 },
-  { title: 'Pet Jar + 5% Off', detail: 'Valid on an eligible purchase from ₹1,000 to ₹5,000', code: 'JAR5', weight: 100 },
-  { title: 'Towel + 10% Off', detail: 'Valid on an eligible purchase from ₹1,000 to ₹5,000', code: 'TOWEL10', weight: 10 },
-  { title: 'Towel + 20% Off', detail: 'Valid on an eligible purchase from ₹1,000 to ₹5,000', code: 'TOWEL20', weight: 5 },
+  { title: 'Pet Jar + 5% Off', detail: 'Valid on an eligible purchase from ₹1,000 to ₹5,000', code: 'JAR5', weight: 300 },
+  { title: 'Towel + 10% Off', detail: 'Valid on an eligible purchase from ₹1,000 to ₹5,000', code: 'TOWEL10', weight: 100 },
+  { title: 'Towel + 20% Off', detail: 'Valid on an eligible purchase from ₹1,000 to ₹5,000', code: 'TOWEL20', weight: 50 },
   { title: 'Towel + 50% Off', detail: 'Valid on an eligible purchase from ₹1,000 to ₹5,000', code: 'TOWEL50', weight: 1 }
 ] as const;
 
