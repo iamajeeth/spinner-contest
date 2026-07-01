@@ -126,9 +126,11 @@ Deno.serve(async request => {
     console.error(ipError);
   }
 
-  if ((ipSpinCount ?? 0) >= 6) {
+  const MAX_SPINS_PER_IP = 3;
+
+  if ((ipSpinCount ?? 0) >= MAX_SPINS_PER_IP) {
     return json(origin, 429, {
-      error: "Maximum spins reached for this network today.",
+      error: `Maximum ${MAX_SPINS_PER_IP} spins are allowed from the same network today.`,
     });
   }
 
