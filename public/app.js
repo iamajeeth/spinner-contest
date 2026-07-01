@@ -12,6 +12,7 @@ const closeModal = document.querySelector('#close-modal');
 const doneButton = document.querySelector('#done-button');
 const config = window.SPIN_CONFIG;
 const winSound = document.getElementById("winSound");
+const spinSound = document.getElementById("spinSound");
 
 let rotation = 0;
 let spinning = false;
@@ -96,8 +97,19 @@ function celebrate(prizeCode) {
   });
 }
 
-function showResult(prize) {
-  resultTitle.textContent = prize.title;
+function maskMobile(mobile) {
+  return `${mobile.substring(0, 2)}XXXX${mobile.substring(6)}`;
+}
+
+function showResult(prize, mobile) {
+  const maskedMobile = maskMobile(mobile);
+  resultTitle.textContent = `🎉 Congratulations!`;
+
+  resultDetail.innerHTML = `
+<strong>${maskedMobile}</strong><br><br>
+You won <strong>${prize.title}</strong><br>
+${prize.detail}
+`;
   resultDetail.textContent = prize.detail;
   resultCode.textContent = prize.code;
   modal.hidden = false;
@@ -165,13 +177,19 @@ form.addEventListener('submit', async event => {
     const targetCenter = data.prizeIndex * segmentAngle;
     const currentNormalized = rotation % 360;
     const adjustment = (360 - targetCenter - currentNormalized) % 360;
-    rotation += 5 * 360 + adjustment;
+    rotation += 7 * 360 + adjustment;
+    spinSound.currentTime = 0;
+    spinSound.play().catch(() => {});
     wheel.style.transform = `rotate(${rotation}deg)`;
 
    window.setTimeout(() => {
-     showResult(data.prize);
+     spinSound.pause();
+     spinSound.currentTime = 0;
+
+     showResult(data.prize, mobile);
+
      celebrate(data.prize.code);
-   }, 5350);
+   }, 7000);
     input.disabled = true;
     submit.querySelector('span').textContent = 'SPIN CLAIMED';
   } catch (error) {

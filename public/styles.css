@@ -152,7 +152,7 @@ form label { display: block; margin-bottom: 9px; color: var(--wine); font-size: 
     #8f2542 90deg 135deg, #edc66e 135deg 180deg,
     #6c1230 180deg 225deg, #d7a13c 225deg 270deg,
     #8f2542 270deg 315deg, #edc66e 315deg 360deg);
-  transition: transform 5.2s cubic-bezier(.12,.68,.08,1);
+  transition: transform 7s cubic-bezier(.12,.68,.08,1);
   box-shadow: inset 0 0 0 2px rgba(255,250,235,.7);
 }
 .wheel::after { content: ""; position: absolute; inset: 0; background: radial-gradient(circle, transparent 0 44%, rgba(255,255,255,.08) 45%, transparent 70%); }
