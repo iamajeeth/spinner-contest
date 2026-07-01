@@ -130,7 +130,7 @@ Deno.serve(async request => {
 
   if ((ipSpinCount ?? 0) >= MAX_SPINS_PER_IP) {
     return json(origin, 429, {
-      error: `Maximum ${MAX_SPINS_PER_IP} spins are allowed from the same network today.`,
+      error: `Maximum ${MAX_SPINS_PER_IP} spins per person. Better luck next time!`,
     });
   }
 
