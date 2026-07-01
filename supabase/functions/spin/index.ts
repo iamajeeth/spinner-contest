@@ -79,6 +79,23 @@ Deno.serve(async request => {
     ? digits.slice(2)
     : digits;
 
+  const forwardedFor = request.headers.get("x-forwarded-for");
+
+  const ipAddress =
+    request.headers.get("cf-connecting-ip") ??
+    (forwardedFor ? forwardedFor.split(",")[0].trim() : null) ??
+    request.headers.get("x-real-ip") ??
+    "unknown";
+
+  const userAgent = request.headers.get("user-agent") ?? "unknown";
+
+  console.log("================================");
+  console.log("Forwarded For :", request.headers.get("x-forwarded-for"));
+  console.log("CF Connecting :", request.headers.get("cf-connecting-ip"));
+  console.log("X Real IP     :", request.headers.get("x-real-ip"));
+  console.log("Stored IP     :", ipAddress);
+  console.log("================================");
+
   if (!/^[6-9]\d{9}$/.test(mobile)) {
     return json(origin, 400, { error: 'Enter a valid 10-digit Indian mobile number.' });
   }
@@ -93,6 +110,28 @@ Deno.serve(async request => {
     auth: { persistSession: false, autoRefreshToken: false }
   });
 
+  const today = new Date();
+  today.setHours(0, 0, 0, 0);
+
+  const { count: ipSpinCount, error: ipError } = await supabase
+    .from("spins")
+    .select("*", {
+      count: "exact",
+      head: true,
+    })
+    .eq("ip_address", ipAddress)
+    .gte("claimed_at", today.toISOString());
+
+  if (ipError) {
+    console.error(ipError);
+  }
+
+  if ((ipSpinCount ?? 0) >= 6) {
+    return json(origin, 429, {
+      error: "Maximum spins reached for this network today.",
+    });
+  }
+
   const { data: recentPrizes, error: historyError } = await supabase
     .from("spins")
     .select("prize_index")
@@ -105,11 +144,13 @@ Deno.serve(async request => {
 
   const prizeIndex = selectPrizeIndex();
   const prize = prizes[prizeIndex];
-  const { error } = await supabase.from('spins').insert({
+  const { error } = await supabase.from("spins").insert({
     mobile,
     prize_index: prizeIndex,
     prize_title: prize.title,
-    prize_code: prize.code
+    prize_code: prize.code,
+    ip_address: ipAddress,
+    user_agent: userAgent,
   });
 
   if (error?.code === '23505') {
