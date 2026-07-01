@@ -103,16 +103,33 @@ function maskMobile(mobile) {
 
 function showResult(prize, mobile) {
   const maskedMobile = maskMobile(mobile);
-  resultTitle.textContent = `🎉 Congratulations!`;
+
+  resultTitle.innerHTML = `
+        🎉 Congratulations!
+    `;
 
   resultDetail.innerHTML = `
-<strong>${maskedMobile}</strong><br><br>
-You won <strong>${prize.title}</strong><br>
-${prize.detail}
-`;
-  resultDetail.textContent = prize.detail;
+        <div style="margin-bottom:12px;font-size:18px;font-weight:700;color:#64112c">
+            📱 ${maskedMobile}
+        </div>
+
+        <div style="font-size:22px;font-weight:700;margin-bottom:10px;">
+            You Won
+        </div>
+
+        <div style="font-size:24px;color:#c79b2d;font-weight:bold;margin-bottom:10px;">
+            🎁 ${prize.title}
+        </div>
+
+        <div style="font-size:15px;opacity:.85">
+            ${prize.detail}
+        </div>
+    `;
+
   resultCode.textContent = prize.code;
+
   modal.hidden = false;
+
   closeModal.focus();
 }
 
