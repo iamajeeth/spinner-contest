@@ -11,6 +11,7 @@ const resultCode = document.querySelector('#result-code');
 const closeModal = document.querySelector('#close-modal');
 const doneButton = document.querySelector('#done-button');
 const config = window.SPIN_CONFIG;
+const winSound = document.getElementById("winSound");
 
 let rotation = 0;
 let spinning = false;
@@ -29,6 +30,72 @@ input.addEventListener('input', () => {
   if (message.textContent) setMessage();
 });
 
+function celebrate(prizeCode) {
+  winSound.currentTime = 0;
+  winSound.play().catch(() => {});
+
+  // 🏆 GRAND PRIZE - 50% OFF
+  if (prizeCode === "TOWEL50") {
+    confetti({
+      particleCount: 350,
+      spread: 180,
+      startVelocity: 70,
+      ticks: 350,
+      origin: { y: 0.55 },
+    });
+
+    setTimeout(() => {
+      confetti({
+        particleCount: 250,
+        angle: 60,
+        spread: 80,
+        origin: { x: 0 },
+      });
+
+      confetti({
+        particleCount: 250,
+        angle: 120,
+        spread: 80,
+        origin: { x: 1 },
+      });
+    }, 400);
+
+    return;
+  }
+
+  // 🥇 20% OFF
+  if (prizeCode === "TOWEL20") {
+    confetti({
+      particleCount: 250,
+      spread: 140,
+      startVelocity: 60,
+      origin: { y: 0.6 },
+    });
+
+    return;
+  }
+
+  // 🥈 10% OFF
+  if (prizeCode === "TOWEL10") {
+    confetti({
+      particleCount: 180,
+      spread: 120,
+      startVelocity: 55,
+      origin: { y: 0.6 },
+    });
+
+    return;
+  }
+
+  // 🎁 Normal Gifts
+  confetti({
+    particleCount: 120,
+    spread: 90,
+    startVelocity: 45,
+    origin: { y: 0.65 },
+  });
+}
+
 function showResult(prize) {
   resultTitle.textContent = prize.title;
   resultDetail.textContent = prize.detail;
@@ -39,6 +106,17 @@ function showResult(prize) {
 
 function hideResult() {
   modal.hidden = true;
+
+  input.disabled = false;
+
+  input.value = "";
+
+  spinning = false;
+
+  submit.disabled = false;
+
+  submit.querySelector("span").textContent = "UNLOCK MY SPIN";
+
   input.focus();
 }
 
@@ -90,7 +168,10 @@ form.addEventListener('submit', async event => {
     rotation += 5 * 360 + adjustment;
     wheel.style.transform = `rotate(${rotation}deg)`;
 
-    window.setTimeout(() => showResult(data.prize), 5350);
+   window.setTimeout(() => {
+     showResult(data.prize);
+     celebrate(data.prize.code);
+   }, 5350);
     input.disabled = true;
     submit.querySelector('span').textContent = 'SPIN CLAIMED';
   } catch (error) {

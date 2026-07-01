@@ -195,17 +195,69 @@ form label { display: block; margin-bottom: 9px; color: var(--wine); font-size: 
 .modal-backdrop { position: absolute; inset: 0; background: rgba(49,5,20,.72); backdrop-filter: blur(5px); }
 .result-card { position: relative; width: min(440px, 100%); padding: 40px 38px 34px; text-align: center; background: var(--paper); border: 2px solid var(--gold); box-shadow: 0 24px 80px rgba(30,0,10,.45); animation: reveal .45s ease-out; }
 .result-card::before { content: ""; position: absolute; inset: 7px; pointer-events: none; border: 1px solid rgba(212,155,54,.35); }
-@keyframes reveal { from { opacity: 0; transform: scale(.86) translateY(20px); } }
+@keyframes reveal {
+
+    0%{
+        opacity:0;
+        transform:scale(.4) rotate(-8deg);
+    }
+
+    55%{
+        opacity:1;
+        transform:scale(1.08) rotate(2deg);
+    }
+
+    75%{
+        transform:scale(.96);
+    }
+
+    100%{
+        opacity:1;
+        transform:scale(1);
+    }
+
+}
 .close-button { position: absolute; right: 12px; top: 8px; z-index: 2; width: 34px; height: 34px; color: #8a7363; border: 0; background: transparent; font-size: 26px; }
 .result-icon { width: 62px; height: 62px; display: grid; place-items: center; margin: 0 auto 20px; color: var(--paper); border-radius: 50%; background: var(--wine); font-size: 25px; box-shadow: 0 0 0 6px #f2dfb3; }
-.result-card h2 { margin: 3px 0 8px; color: var(--wine); font: 36px "DM Serif Display", serif; }
+.result-card h2 { margin: 3px 0 8px; color: var(--wine); font: 36px "DM Serif Display", serif;animation: shimmer 2s infinite; }
+@keyframes shimmer{
+
+    0%{
+        color:var(--wine);
+    }
+
+    50%{
+        color:var(--gold);
+    }
+
+    100%{
+        color:var(--wine);
+    }
+
+}
 .result-card > p:not(.eyebrow):not(.result-note) { margin: 0; color: #756357; }
-.coupon { margin: 25px 0 16px; padding: 15px; border: 1px dashed var(--gold); background: #f8ecd1; }
+.coupon { margin: 25px 0 16px; padding: 15px; border: 1px dashed var(--gold); background: #f8ecd1;animation: pulse 1.5s infinite; }
 .coupon small, .coupon strong { display: block; }
 .coupon small { color: #967238; font-size: 8px; letter-spacing: 2px; }
 .coupon strong { margin-top: 5px; color: var(--wine); font-size: 23px; letter-spacing: 3px; }
 .result-note { color: #958477; font-size: 11px; }
 .result-card .primary-button { margin-top: 22px; }
+@keyframes pulse{
+
+    0%{
+        transform:scale(1);
+    }
+
+    50%{
+        transform:scale(1.04);
+        box-shadow:0 0 22px rgba(212,155,54,.4);
+    }
+
+    100%{
+        transform:scale(1);
+    }
+
+}
 
 @media (max-width: 900px) {
   .hero { grid-template-columns: 1fr; gap: 32px; text-align: center; }
