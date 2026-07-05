@@ -187,8 +187,52 @@ form label { display: block; margin-bottom: 9px; color: var(--wine); font-size: 
 .trust-strip strong, .trust-strip small { display: block; }
 .trust-strip strong { color: var(--wine); font: 15px "DM Serif Display", serif; }
 .trust-strip small { margin-top: 3px; color: #8a796d; font-size: 9px; }
-.terms { padding: 16px; margin: 0; text-align: center; color: #8f8175; font-size: 9px; letter-spacing: .3px; }
-.terms strong { color: var(--wine); }
+/* ======================================================
+   TERMS & CONDITIONS
+====================================================== */
+
+.terms {
+  max-width: 1120px;
+  margin: 60px auto 0;
+  padding: 40px 32px;
+  border-top: 1px solid rgba(116,74,44,.15);
+  text-align: left;
+  color: #555;
+}
+
+.terms h2 {
+  margin: 0 0 24px;
+  color: var(--wine);
+  font-family: "DM Serif Display", serif;
+  font-size: 34px;
+  font-weight: 400;
+}
+
+.terms ol {
+  margin: 0;
+  padding-left: 22px;
+}
+
+.terms li {
+  margin-bottom: 14px;
+  color: #5c5148;
+  font-size: 15px;
+  line-height: 1.8;
+}
+
+.privacy a {
+  color: var(--wine);
+  font-weight: 700;
+  text-decoration: none;
+}
+
+.privacy a:hover {
+  text-decoration: underline;
+}
+
+html {
+  scroll-behavior: smooth;
+}
 
 .modal[hidden] { display: none; }
 .modal { position: fixed; inset: 0; z-index: 20; display: grid; place-items: center; padding: 20px; }
@@ -291,6 +335,19 @@ form label { display: block; margin-bottom: 9px; color: var(--wine); font-size: 
   .trust-strip > div { justify-content: flex-start; padding: 15px 10px; border-right: 0; border-bottom: 1px solid rgba(116,74,44,.15); }
   .result-card { padding: 36px 25px 28px; }
 }
+
+  .terms{
+    padding:32px 20px;
+  }
+
+  .terms h2{
+    font-size:28px;
+  }
+
+  .terms li{
+    font-size:14px;
+    line-height:1.7;
+  }
 
 @media (prefers-reduced-motion: reduce) {
   *, *::before, *::after { animation-duration: .01ms !important; animation-iteration-count: 1 !important; scroll-behavior: auto !important; }
