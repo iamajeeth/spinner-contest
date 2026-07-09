@@ -126,7 +126,7 @@ Deno.serve(async request => {
     console.error(ipError);
   }
 
-  const MAX_SPINS_PER_IP = 3000;
+  const MAX_SPINS_PER_IP = 2;
 
   if ((ipSpinCount ?? 0) >= MAX_SPINS_PER_IP) {
     return json(origin, 429, {
